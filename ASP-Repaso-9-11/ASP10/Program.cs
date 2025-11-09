@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 namespace LogiTrack
 {
-    // =====================================
-    // CLASE BASE ABSTRACTA: ENVÍO
-    // =====================================
     public abstract class Envio
     {
         public string Descripcion { get; set; }
@@ -17,7 +14,7 @@ namespace LogiTrack
             set => peso = value < 0 ? 0.0 : value;
         }
 
-        public double CostoBase => 2.0 * Peso; // Costo fijo por kilogramo
+        public double CostoBase => 2.0 * Peso;
 
         public Envio(string descripcion, double peso)
         {
@@ -33,9 +30,6 @@ namespace LogiTrack
         }
     }
 
-    // =====================================
-    // CLASE DERIVADA: PAQUETE ESTÁNDAR
-    // =====================================
     public class PaqueteEstandar : Envio
     {
         private double tarifaPlana;
@@ -62,9 +56,6 @@ namespace LogiTrack
         }
     }
 
-    // =====================================
-    // CLASE DERIVADA: PAQUETE EXPRESS
-    // =====================================
     public class PaqueteExpress : Envio
     {
         private double recargoUrgencia;
@@ -91,9 +82,6 @@ namespace LogiTrack
         }
     }
 
-    // =====================================
-    // CLASE PRINCIPAL: PROGRAMA (MENÚ)
-    // =====================================
     class Program
     {
         static void Main()
@@ -139,9 +127,6 @@ namespace LogiTrack
             } while (opcion != 4);
         }
 
-        // =====================================
-        // MÉTODOS AUXILIARES
-        // =====================================
         static void CrearEnvio(List<Envio> envios)
         {
             Console.WriteLine("\nSeleccione el tipo de envío:");
@@ -171,7 +156,7 @@ namespace LogiTrack
                     tarifa = 0.0;
 
                 envios.Add(new PaqueteEstandar(descripcion, peso, tarifa));
-                Console.WriteLine("✅ Paquete Estándar creado correctamente.");
+                Console.WriteLine("Paquete Estándar creado correctamente.");
             }
             else if (tipo == 2)
             {
@@ -181,7 +166,7 @@ namespace LogiTrack
                     recargo = 0.0;
 
                 envios.Add(new PaqueteExpress(descripcion, peso, recargo));
-                Console.WriteLine("✅ Paquete Express creado correctamente.");
+                Console.WriteLine("Paquete Express creado correctamente.");
             }
             else
             {
@@ -210,7 +195,7 @@ namespace LogiTrack
             foreach (var envio in envios)
                 total += envio.CalcularCostoTotal();
 
-            Console.WriteLine($"\n💰 Ingreso total por envíos: {total:C2}");
+            Console.WriteLine($"\nIngreso total por envíos: {total:C2}");
         }
     }
 }
